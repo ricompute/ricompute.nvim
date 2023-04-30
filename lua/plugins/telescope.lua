@@ -105,17 +105,20 @@ return {
             end
             require('lualine').setup {
                 options = {
-                    section_separators = '',
-                    component_separators = '',
-                    globalstatus = true,
+                    -- section_separators = '',
+                    -- component_separators = '',
+                    globalstatus = false,
                     --theme = "catppuccin",
                 },
                 sections = {
                     lualine_a = {'mode', {macro_reg, type = 'lua_expr', color = 'WarningMsg'} },
-                    lualine_b = {'branch', { search_count, type = 'lua_expr' } },
-                    lualine_c = {
-                        { git_blame.get_current_blame_text, cond = git_blame.is_blame_text_available }
-                    },
+                    -- lualine_b = { { 'filename', path = 3 }, 'branch'},
+                    -- lualine_b = {'branch', { search_count, type = 'lua_expr' } },
+                    -- lualine_c = {
+                    --     { git_blame.get_current_blame_text, cond = git_blame.is_blame_text_available }
+                    -- },
+                    lualine_c = { {'filename', path = 3} },
+                    lualine_y = { { search_count, type = 'lua_expr' }, 'progress'}
                 },
                 extensions = { 'nvim-tree' },
             }
@@ -133,14 +136,14 @@ return {
     },
     -- { 'RRethy/vim-illuminate' }, -- highlight current word
     -- filetree
-    { 'kyazdani42/nvim-tree.lua',
+    { 'nvim-tree/nvim-tree.lua',
         keys = {
             { '<leader>ft', ':NvimTreeToggle<cr>', desc = "show file tree" },
         },
         config = function()
             require 'nvim-tree'.setup {
                 disable_netrw       = true,
-                open_on_setup       = false,
+                -- open_on_setup       = false,
                 update_focused_file = {
                     enable = true,
                 },
