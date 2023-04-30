@@ -1,10 +1,18 @@
 
-
+-- Move selected lines up or down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
+-- Append next line without moving cursor
 vim.keymap.set("n", "J", "mzJ`z")
 
+-- Keep cursor centered when jumping
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+
+-- Capital S to search and replace
 vim.keymap.set("n", "S", ":%s//g<Left><Left>")
 
 local wk = require("which-key")
@@ -57,6 +65,12 @@ vim.keymap.set("n", "<S-Left>", "<cmd>vertical resize -2<CR>")
 vim.keymap.set("n", "<S-Right>", "<cmd>vertical resize +2<CR>")
 
 vim.keymap.set("n", "Q", "<Nop>")
+
+-- Escape from insert mode with jj
+vim.keymap.set("i", "jj", "<Esc>")
+
+-- Escape from terminal mode
+vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>")
 
 -- send code with ctrl+Enter
 -- just like in e.g. RStudio
