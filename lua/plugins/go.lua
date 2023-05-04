@@ -12,7 +12,7 @@ return {
             require("go").setup({
                 -- goimport = 'goimport',
                 lsp_cfg = false,
-                -- lsp_codelens = false,
+                lsp_codelens = false,
                 -- luasnip = true
             })
             local cfg = require'go.lsp'.config()
