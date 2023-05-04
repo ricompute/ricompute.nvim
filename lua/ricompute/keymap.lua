@@ -42,6 +42,14 @@ wk.register({
         p = { ':split term://python<cr>', 'new python terminal' },
         i = { ':split term://ipython<cr>', 'new ipython terminal' },
         j = { ':split term://julia<cr>', 'new julia terminal' },
+        v = {
+            name = 'vertical',
+            n = { ':vsplit term://$SHELL<cr>', 'new terminal' },
+            r = { ':vsplit term://R<cr>', 'new R terminal' },
+            p = { ':vsplit term://python<cr>', 'new python terminal' },
+            i = { ':vsplit term://ipython<cr>', 'new ipython terminal' },
+            j = { ':vsplit term://julia<cr>', 'new julia terminal' },
+        },
     },
 }, { prefix = "<leader>" })
 
