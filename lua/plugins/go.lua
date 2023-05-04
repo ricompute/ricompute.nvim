@@ -10,7 +10,10 @@ return {
             require("mason").setup()
             require("mason-lspconfig").setup()
             require("go").setup({
-                lsp_cfg = false
+                -- goimport = 'goimport',
+                lsp_cfg = false,
+                -- lsp_codelens = false,
+                -- luasnip = true
             })
             local cfg = require'go.lsp'.config()
             require('lspconfig').gopls.setup(cfg)
@@ -18,7 +21,7 @@ return {
             wk.register({
                 g = {
                     name = "go/git",
-                    r = { ":GoRun %", "go run" },
+                    r = { ":split term://go run %<cr>", "go run" },
                     b = { vim.cmd.GoBuild, "go build" }
                 },
             }, { prefix = "<leader>"})
