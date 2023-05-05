@@ -11,7 +11,8 @@ return {
                 g = { builtin.live_grep, "grep files" },
                 b = { builtin.buffers, "find buffers" },
                 h = { builtin.help_tags, "find help tags" },
-                r = { "<cmd>Telescope bibex<cr>", "find references" }
+                r = { "<cmd>Telescope bibex<cr>", "find references" },
+                s = { "<cmd>Telescope luasnip<cr>", "find luasnips" }
             },
         }, { prefix = "<leader>" })
         -- vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
@@ -70,6 +71,7 @@ return {
         telescope.load_extension('ui-select')
         telescope.load_extension('file_browser')
         telescope.load_extension('bibtex')
+        telescope.load_extension('luasnip')
         --telescope.load_extension('dap')
         -- telescope.load_extension('project')
     end
@@ -79,6 +81,10 @@ return {
     --{ 'nvim-telescope/telescope-dap.nvim' },
     { 'nvim-telescope/telescope-file-browser.nvim' },
     { 'nvim-telescope/telescope-bibtex.nvim' },
+    {
+        "benfowler/telescope-luasnip.nvim",
+        module = "telescope._extensions.luasnip",  -- if you wish to lazy-load
+    },
     -- { 'nvim-telescope/telescope-project.nvim' },
     { 'nvim-lualine/lualine.nvim',
         dependencies = {
