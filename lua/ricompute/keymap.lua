@@ -101,3 +101,21 @@ vim.keymap.set("v", '<', '<gv')
 -- remove search highlight on esc
 vim.keymap.set("n", '<esc>', '<cmd>noh<cr>')
 
+vim.cmd([[
+" Set up spelling
+let g:spelllang_is_en_us = 0
+autocmd FileType text,tex,latex,markdown setlocal spell spelllang=en_us
+autocmd FileType text,tex,latex,markdown let g:spelllang_is_en_us = 1
+setlocal spellfile+=~/.vim/spell/en.utf-8.add
+setlocal spellfile+=local.utf-8.add
+nnoremap <F7> :call SpelllangToggle()<cr>
+function! SpelllangToggle()
+    if g:spelllang_is_en_us
+        set spell spelllang=
+        let g:spelllang_is_en_us = 0
+    else
+        setlocal spell spelllang=en_us
+        let g:spelllang_is_en_us = 1
+    endif
+endfunction
+]])
