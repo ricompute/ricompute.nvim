@@ -49,3 +49,26 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end,
     group = format_sync_grp,
 })
+
+-- Set up spelling
+vim.g.spelllang_is_en_us = false
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "text", "tex", "latex", "markdown", "quarto" },
+    callback = function()
+        vim.opt_local.spell = true
+        vim.opt_local.spelllang = "en_us"
+        vim.g.spelllang_is_en_us = true
+    end
+})
+vim.opt_local.spellfile:append { "~/.vim/spell/en.utf-8.add", "local.utf-8.add" }
+vim.keymap.set("n", "<F7>", function()
+    if vim.g.spelllang_is_en_us then
+        vim.opt.spell = true
+        vim.opt.spelllang = ""
+        vim.g.spelllang_is_en_us = false
+    else
+        vim.opt_local.spell = true
+        vim.opt_local.spelllang = "en_us"
+        vim.g.spelllang_is_en_us = true
+    end
+end)
