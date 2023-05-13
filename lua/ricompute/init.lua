@@ -53,7 +53,8 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 -- Set up spelling
 vim.g.spelllang_is_en_us = false
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "text", "tex", "latex", "pandoc", "markdown", "md", "rmarkdown", "rmd", "qmd", "quarto" },
+    pattern = { "text", "tex", "plaintex", "latex", "pandoc", "markdown", "md", 
+        "rmarkdown", "rmd", "qmd", "quarto" },
     callback = function()
         vim.opt_local.spell = true
         vim.opt_local.spelllang = "en_us"
@@ -73,7 +74,61 @@ vim.keymap.set("n", "<F7>", function()
     end
 end)
 
--- 
+-- LaTeX autocommands
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "tex", "latex", "plaintex" },
+    callback = function()
+        vim.keymap.set("n", "<F3>", ":w !detex \\| wc -w<CR>")
+        vim.keymap.set("i", "<F3>", "<Esc>:w !detex \\| wc -w<CR>a")
+        vim.keymap.set("n", "<F5>", ":!xelatex<Space><C-r>%<Enter>")
+        vim.keymap.set("i", "<F5>", "<Esc>:!xelatex<Space><C-r>%<Enter>a")
+    end
+})
+
+-- Markdown autocommands
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "markdown", "md" },
+    callback = function()
+        vim.keymap.set("n", "<F5>", ":!pandoc-html <C-r>%<Enter>")
+        vim.keymap.set("i", "<F5>", "<Esc>:!pandoc-html <C-r>%<Enter>a")
+        vim.keymap.set("n", "<F6>", ":AsyncRun pandoc-html <C-r>%<Enter>")
+        vim.keymap.set("i", "<F6>", "<Esc>:AsyncRun pandoc-html <C-r>%<Enter>a")
+        vim.keymap.set("n", "<C-F5>", ":!pandoc-html-toc <C-r>%<Enter>")
+        vim.keymap.set("i", "<C-F5>", "<Esc>:!pandoc-html-toc <C-r>%<Enter>a")
+        vim.keymap.set("n", "<C-F6>", ":AsyncRun pandoc-html-toc <C-r>%<Enter>")
+        vim.keymap.set("i", "<C-F6>", "<Esc>:AsyncRun pandoc-html-toc <C-r>%<Enter>a")
+        vim.keymap.set("n", "<C-S-F5>", ":!pandoc-html-toc-sc <C-r>%<Enter>")
+        vim.keymap.set("i", "<C-S-F5>", "<Esc>:!pandoc-html-toc-sc <C-r>%<Enter>a")
+        vim.keymap.set("n", "<C-S-F6>", ":AsyncRun pandoc-html-toc-sc <C-r>%<Enter>")
+        vim.keymap.set("i", "<C-S-F6>", "<Esc>:AsyncRun pandoc-html-toc-sc <C-r>%<Enter>a")
+    end
+})
+
+-- R Markdown autocommands
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "rmarkdown", "rmd" },
+    callback = function()
+        vim.keymap.set("n", "<F5>", ":!echo<Space>\"rmarkdown::render('<C-r>%')\"<Space>|<Space>r<Enter>")
+        vim.keymap.set("i", "<F5>", "<Esc>:!echo<Space>\"rmarkdown::render('<C-r>%')\"<Space>|<Space>r<Enter>a")
+        vim.keymap.set("n", "<F6>", ":AsyncRun echo<Space>\"rmarkdown::render('<C-r>%')\"<Space>|<Space>r<Enter>")
+        vim.keymap.set("i", "<F6>", "<Esc>:AsyncRun echo<Space>\"rmarkdown::render('<C-r>%')\"<Space>|<Space>r<Enter>a")
+    end
+})
+
+-- lilypond autocommands
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "ly" },
+    callback = function()
+        vim.keymap.set("n", "<F5>", ":! lilypond <C-r>%<Enter>")
+        vim.keymap.set("i", "<F5>", "<Esc>:! lilypond <C-r>%<Enter>a")
+        vim.keymap.set("n", "<F6>", ":AsyncRun lilypond <C-r>%<Enter>")
+        vim.keymap.set("i", "<F6>", "<Esc>:AsyncRun lilypond <C-r>%<Enter>a")
+        vim.keymap.set("n", "<C-F5>", ":! ly2mp3 <C-r>%<Enter>")
+        vim.keymap.set("i", "<C-F5>", "<Esc>:! ly2mp3 <C-r>%<Enter>a")
+        vim.keymap.set("n", "<C-F6>", ":AsyncRun ly2mp3 <C-r>%<Enter>")
+        vim.keymap.set("i", "<C-F6>", "<Esc>:AsyncRun ly2mp3 <C-r>%<Enter>a")
+    end
+})
 
 -- Fix my spelling
 vim.cmd("abbr adn and")
