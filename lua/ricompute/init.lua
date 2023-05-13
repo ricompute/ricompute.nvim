@@ -53,7 +53,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 -- Set up spelling
 vim.g.spelllang_is_en_us = false
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "text", "tex", "latex", "markdown", "quarto" },
+    pattern = { "text", "tex", "latex", "pandoc", "markdown", "md", "rmarkdown", "rmd", "qmd", "quarto" },
     callback = function()
         vim.opt_local.spell = true
         vim.opt_local.spelllang = "en_us"
