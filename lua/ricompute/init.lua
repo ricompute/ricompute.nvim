@@ -72,3 +72,13 @@ vim.keymap.set("n", "<F7>", function()
         vim.g.spelllang_is_en_us = true
     end
 end)
+
+-- 
+
+-- Fix my spelling
+vim.cmd("abbr adn and")
+vim.cmd("abbr nad and")
+vim.cmd("abbr teh the")
+vim.cmd("abbr hte the")
+vim.cmd("abbr wiht with")
+

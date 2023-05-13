@@ -51,6 +51,10 @@ wk.register({
             j = { ':vsplit term://julia<cr>', 'new julia terminal' },
         },
     },
+    s = {
+        name = 'snips',
+        s = { "<cmd>source ~/.config/nvim/lua/ricompute/snips.lua<CR>", "source LuaSnips file"},
+    }
 }, { prefix = "<leader>" })
 
 vim.keymap.set("x", "<leader>p", "\"_dP")
