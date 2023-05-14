@@ -118,6 +118,10 @@ ls.add_snippets( "tex", {
             t({"\\href{"}), i(1, "link"),
             t({"}"}), i(0)
         }),
+    s( { trig = ";cp", name = "clearpage", dscr = "clearpage",
+        snippetType = "autosnippet" }, {
+            t({"\\clearpage"})
+        }),
 }
 )
 ls.filetype_extend("plaintex", { "tex" })
@@ -178,12 +182,23 @@ ls.add_snippets( "markdown", {
             t({"---", "title: \""}), i(1, "title"),
             t({"\"", "author: \""}), i(2, "author"),
             t({"\"", "date: "}), i(3, "date"),
-            t({"", ""}), i(0)
+            t({"---", "", ""}), i(0)
         })
 })
-
 ls.filetype_extend("rmarkdown", { "markdown" })
 ls.filetype_extend("rmd", { "markdown" })
 ls.filetype_extend("quarto", { "markdown" })
 ls.filetype_extend("qmd", { "markdown" })
 ls.filetype_extend("pandoc", { "markdown" })
+
+ls.add_snippets( "go", {
+    s( { trig = "ien", name = "if err != nil", dscr = "Basic error handling", 
+        snippetType = "snippet" }, {
+            t({"if err != nil {", ""}), 
+            c(1, {
+                t("    log.Fatal(err)"),
+                i(nil, "    custom error handling")
+            }),
+            t({"", "}", ""}), i(0)
+        }),
+})
